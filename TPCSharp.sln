@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30804.86
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TP9", "TP9\TP9.csproj", "{114646D0-F998-4EF7-81F1-19DC53D8738C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TP9Test", "TP9Test\TP9Test.csproj", "{36810B7C-62E7-452D-AD6A-420C7C720988}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{114646D0-F998-4EF7-81F1-19DC53D8738C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{114646D0-F998-4EF7-81F1-19DC53D8738C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{114646D0-F998-4EF7-81F1-19DC53D8738C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{114646D0-F998-4EF7-81F1-19DC53D8738C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{36810B7C-62E7-452D-AD6A-420C7C720988}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{36810B7C-62E7-452D-AD6A-420C7C720988}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{36810B7C-62E7-452D-AD6A-420C7C720988}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{36810B7C-62E7-452D-AD6A-420C7C720988}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3CDEC0A8-4A84-4499-B2CD-E025DFF50715}
+	EndGlobalSection
+EndGlobal
