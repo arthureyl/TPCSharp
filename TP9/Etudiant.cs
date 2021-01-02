@@ -1,9 +1,4 @@
-﻿using Newtonsoft.Json.Linq;
-using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace TP9
+﻿namespace TP9
 {
     public class Etudiant : Client
     {
@@ -18,7 +13,7 @@ namespace TP9
 
         //VI.3 Créez le constructeur qui permette ceci tout en initialisant les
         //membres de la classe mère « Client ».
-        public Etudiant(string nom, string prenom, int anneeDiplome) : base(nom,prenom)
+        public Etudiant(string nom, string prenom, int anneeDiplome) : base(nom, prenom)
         {
             _anneeDiplome = anneeDiplome;
         }

@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace TP9
 {
@@ -54,7 +52,7 @@ namespace TP9
         //objets de la classe client sont égaux. (le nom et le prénom sont égaux)
         public override bool Equals(object obj)
         {
-            Client client = (Client) obj;
+            Client client = (Client)obj;
             if (Nom == client.Nom && Prenom == client.Prenom)
             {
                 return true;

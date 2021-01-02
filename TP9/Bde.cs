@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace TP9
 {
@@ -11,7 +10,7 @@ namespace TP9
         //stock ainsi que d’une collection de clients qui seront les clients qui
         //bénéficieront d’un tarif préférentiel.
         private Stock _stockBde;
-        private Dictionary<Client,decimal> _clientsBde;
+        private Dictionary<Client, decimal> _clientsBde;
 
         //Singleton 
         private static Bde _instance;
@@ -20,7 +19,7 @@ namespace TP9
         public Bde()
         {
             _stockBde = new Stock();
-            _clientsBde = new Dictionary<Client,decimal>();
+            _clientsBde = new Dictionary<Client, decimal>();
         }
 
         public static Bde GetInstance()
@@ -38,7 +37,7 @@ namespace TP9
             return _instance;
         }
 
-        public Stock StockBde { get => _stockBde; set => _stockBde = value;  }
+        public Stock StockBde { get => _stockBde; set => _stockBde = value; }
         public Dictionary<Client, decimal> ClientsBde { get => _clientsBde; set => _clientsBde = value; }
 
 
@@ -57,7 +56,7 @@ namespace TP9
         public List<Client> TrouverUtilisateurSoldeNegatif(decimal solde = 0)
         {
             List<Client> listClients = new List<Client>();
-            foreach(KeyValuePair<Client, decimal> client in ClientsBde)
+            foreach (KeyValuePair<Client, decimal> client in ClientsBde)
             {
                 if (client.Value < solde)
                 {
@@ -91,7 +90,7 @@ namespace TP9
             return null;
         }
 
-        public void Update(Produit produit, int valeurStock,Stock stock)
+        public void Update(Produit produit, int valeurStock, Stock stock)
         {
             if (valeurStock < 10)
             {

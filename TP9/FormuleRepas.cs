@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace TP9
 {
@@ -23,7 +21,7 @@ namespace TP9
         public decimal PrixFormuleNomMembre()
         {
             decimal prixFormuleNonMembre = 0;
-            foreach(var produit in Formule)
+            foreach (var produit in Formule)
             {
                 prixFormuleNonMembre += produit.PrixVenteNonMembre;
             }
@@ -47,7 +45,7 @@ namespace TP9
             string formuleCarte = "";
             foreach (var produit in Formule)
             {
-                formuleCarte += "\n"+produit.Nom;
+                formuleCarte += "\n" + produit.Nom;
             }
             return formuleCarte;
         }

@@ -1,8 +1,4 @@
-﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using System;
-
-namespace TP9
+﻿namespace TP9
 {
     class Program
     {

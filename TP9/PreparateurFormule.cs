@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace TP9
+﻿namespace TP9
 {
     public class PreparateurFormule : IAssembleur
     {
@@ -13,6 +9,12 @@ namespace TP9
         {
             FormuleRepasNormal = new FormuleRepas();
         }
+
+        public PreparateurFormule(FormuleRepas formuleRepasNormal)
+        {
+            FormuleRepasNormal = formuleRepasNormal;
+        }
+
         public void AjouterBoisson(Produit produit)
         {
             FormuleRepasNormal.AjouterProduit(produit);

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace TP9
 {
@@ -8,7 +7,7 @@ namespace TP9
     {
         Dictionary<Produit, int> _stockProduit;
         private List<IObserver> _observers = new List<IObserver>();
-        public Dictionary<Produit, int> StockProduit{ get => _stockProduit; set => _stockProduit = value; }
+        public Dictionary<Produit, int> StockProduit { get => _stockProduit; set => _stockProduit = value; }
 
         public Stock()
         {
@@ -58,7 +57,7 @@ namespace TP9
             }
             else
             {
-                if ((StockProduit[produit] + quantite)>=0)
+                if ((StockProduit[produit] + quantite) >= 0)
                 {
                     StockProduit[produit] += quantite;
                     this.Notify(produit, StockProduit[produit]);
@@ -73,9 +72,9 @@ namespace TP9
 
         //III.4 Créer une méthode permettant d’ajouter des produits au stock(en
         //les achetant à un fournisseur)
-        public void AjouterStock(Produit produit,int quantite)
+        public void AjouterStock(Produit produit, int quantite)
         {
-            if(StockProduit.ContainsKey(produit))
+            if (StockProduit.ContainsKey(produit))
             {
                 StockProduit[produit] += quantite;
             }
@@ -116,7 +115,7 @@ namespace TP9
 
             foreach (var observer in _observers)
             {
-                observer.Update(produit,quantite,this);
+                observer.Update(produit, quantite, this);
             }
         }
     }

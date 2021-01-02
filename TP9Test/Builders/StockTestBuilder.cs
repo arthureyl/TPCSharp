@@ -18,7 +18,7 @@ namespace TP9Test.Builders
 
         public Stock StockBuilder()
         {
-            ProduitTestBuilder produitBuilder = new ProduitTestBuilder(); ;
+            ProduitTestBuilder produitBuilder = new ProduitTestBuilder();
             StockProduit.AjouterStock(produitBuilder.ChipsBuilder(), 10);
             StockProduit.AjouterStock(produitBuilder.BiereBuilder(), 100);
             StockProduit.AjouterStock(produitBuilder.CocaBuilder(), 1);

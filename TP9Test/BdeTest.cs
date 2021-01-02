@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NSubstitute;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using TP9;
@@ -70,6 +71,24 @@ namespace TP9Test
             bdeBuilderTest.StockBde.Attach(bdeBuilderTest);
             preparateurFormule.PreparationFormuleDessertSoda(bdeBuilderTest.StockBde);
             Assert.Equal(100, bdeBuilderTest.StockBde.TrouverStockProduit("Coca"));
+        }
+
+        [Fact]
+        public void TestObserverUtilisationChangementStock()
+        {
+            IObserver mockObserver = Substitute.For<IObserver>();
+            bdeBuilderTest.StockBde.Attach(mockObserver);
+            bdeBuilderTest.StockBde.ChangerStockProduit("Coca", -1);
+            mockObserver.Received().Update(bdeBuilderTest.StockBde.TrouverProduit("Coca"),0, bdeBuilderTest.StockBde);
+        }
+
+        [Fact]
+        public void TestObserverUtilisatioPreparationFormule()
+        {
+            IObserver mockObserver = Substitute.For<IObserver>();
+            bdeBuilderTest.StockBde.Attach(mockObserver);
+            preparateurFormule.PreparationFormuleDessertSoda(bdeBuilderTest.StockBde);
+            mockObserver.Received().Update(bdeBuilderTest.StockBde.TrouverProduit("Coca"), 0, bdeBuilderTest.StockBde);
         }
     }
 }

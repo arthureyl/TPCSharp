@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace TP9
+﻿namespace TP9
 {
 
     //BoissonAlcoolisee, qui contient une propriété « degré d’alcool »
