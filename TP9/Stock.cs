@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace TP9
 {
-    public class Stock : IObservable
+    public class Stock : IObservable, IStock
     {
         Dictionary<Produit, int> _stockProduit;
         private List<IObserver> _observers = new List<IObserver>();

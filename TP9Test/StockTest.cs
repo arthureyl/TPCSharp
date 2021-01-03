@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NSubstitute;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using TP9;
@@ -10,6 +11,8 @@ namespace TP9Test
     public class StockTest
     {
         Stock stockProduit = new StockTestBuilder().StockBuilder();
+        PreparateurFormule preparateurFormule = new PreparateurFormule();
+        ProduitTestBuilder produitBuilder = new ProduitTestBuilder();
 
         [Fact]
         public void TestCreationStock()
@@ -47,7 +50,5 @@ namespace TP9Test
             Assert.True(stockProduit.ChangerStockProduit("Coca", 10));
             Assert.True(stockProduit.ChangerStockProduit("Coca", -8));
         }
-
- 
     }
 }

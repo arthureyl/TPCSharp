@@ -90,5 +90,15 @@ namespace TP9Test
             preparateurFormule.PreparationFormuleDessertSoda(bdeBuilderTest.StockBde);
             mockObserver.Received().Update(bdeBuilderTest.StockBde.TrouverProduit("Coca"), 0, bdeBuilderTest.StockBde);
         }
+
+        [Fact]
+        public void TestDetachObserverUtilisatioPreparationFormule()
+        {
+            IObserver mockObserver = Substitute.For<IObserver>();
+            bdeBuilderTest.StockBde.Attach(mockObserver);
+            bdeBuilderTest.StockBde.Detach(mockObserver);
+            preparateurFormule.PreparationFormuleDessertSoda(bdeBuilderTest.StockBde);
+            mockObserver.DidNotReceive().Update(bdeBuilderTest.StockBde.TrouverProduit("Coca"), 0, bdeBuilderTest.StockBde);
+        }
     }
 }

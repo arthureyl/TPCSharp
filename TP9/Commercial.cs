@@ -36,7 +36,7 @@
         //IV.3 Créer une fonction qui permet de passer commande de plusieurs
         //produits, en passant le nom du produit et un integer qui représente la
         //quantité à commander.
-        public bool PasserCommande(string nom, int quantite, Stock stock)
+        public bool PasserCommande(string nom, int quantite, IStock stock)
         {
             if (quantite <= 0)
             {

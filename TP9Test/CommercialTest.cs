@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NSubstitute;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using TP9;
@@ -50,6 +51,22 @@ namespace TP9Test
         public void TestAjouterDansStockAvecProduitInconnu()
         {
             Assert.False(commercial.PasserCommande("bonbon", 50, stockProduit));
+        }
+
+        [Fact]
+        public void TestMockPasseCommande()
+        {
+            IStock mockStock = Substitute.For<IStock>();
+            Assert.True(commercial.PasserCommande("Coca", 100, mockStock));
+            mockStock.Received().AjouterStock(Arg.Any<Boisson>(), 100);
+        }
+
+        [Fact]
+        public void TestMockPasseCommandeArticleInconnu()
+        {
+            IStock mockStock = Substitute.For<IStock>();
+            Assert.False(commercial.PasserCommande("Inconnu", 100, mockStock));
+            mockStock.DidNotReceive().AjouterStock(Arg.Any<Boisson>(), 100);
         }
     }
 }

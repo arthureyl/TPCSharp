@@ -12,15 +12,7 @@ namespace TP9Test
     {
         Stock stock = new StockTestBuilder().StockBuilder();
         PreparateurFormule preparateurFormule = new PreparateurFormule();
-
-        [Fact]
-        public void TestPreparationFormuleBiereSandwich()
-        {
-            FormuleRepas formuleRepas = preparateurFormule.PreparationFormuleBiereSandwich(stock);
-            Assert.Equal(2, formuleRepas.Formule.Count);
-            Assert.Contains("Biere",formuleRepas.ToString());
-            Assert.Contains("Sandwich", formuleRepas.ToString());
-        }
+        PreparateurFormuleVegetarienne preparateurFormuleVegetarienne = new PreparateurFormuleVegetarienne();
 
         [Fact]
         public void TestPreparationFormuleBiereSandwichDessert()
@@ -42,26 +34,127 @@ namespace TP9Test
         }
 
         [Fact]
-        public void TestFormuleRepasAjouterProduit()
+        public void TestFakeFormulePreparationFormuleBiereSandwichDessertFake()
         {
-            FormuleRepas mockFormuleRepas = Substitute.For<FormuleRepas>();
-            PreparateurFormule preparateurFormuleTest = new PreparateurFormule(mockFormuleRepas);
-            preparateurFormule.PreparationFormuleDessertSoda(stock);
-            mockFormuleRepas.Received().AjouterProduit(stock.TrouverProduit("Coca"));
-            mockFormuleRepas.Received().AjouterProduit(stock.TrouverProduit("Tiramisu"));
-            mockFormuleRepas.DidNotReceive().AjouterProduit(stock.TrouverProduit("Biere"));
+            IStock fakeStock = new FakeStock();
+            FormuleRepas formuleRepas = preparateurFormule.PreparationFormuleBiereSandwichDessert(fakeStock);
+            Assert.NotNull(formuleRepas);
         }
 
         [Fact]
-        public void TestFormuleRepasChangerStockProduit()
+        public void TestFakeFormulePreparationFormuleDessertSodaFake()
         {
-            Stock mockStock = Substitute.For<Stock>();
-            ProduitTestBuilder produitBuilder = new ProduitTestBuilder();
-            mockStock.AjouterStock(produitBuilder.CocaBuilder(), 10);
-            mockStock.AjouterStock(produitBuilder.TiramisuBuilder(), 100);
-            preparateurFormule.PreparationFormuleDessertSoda(mockStock);
-            mockStock.Received().ChangerStockProduit("Coca",-1);
+            IStock fakeStock = new FakeStock();
+            FormuleRepas formuleRepas = preparateurFormule.PreparationFormuleDessertSoda(fakeStock);
+            Assert.NotNull(formuleRepas);
         }
 
+        [Fact]
+        public void TestFakeFormuleTestPreparationFormuleBiereSandwichFake()
+        {
+            IStock fakeStock = new FakeStock();
+            FormuleRepas formuleRepas = preparateurFormule.PreparationFormuleBiereSandwich(fakeStock);
+            Assert.NotNull(formuleRepas);
+        }
+
+        [Fact]
+        public void TestMockModificationStockAjouterBoisson()
+        {
+            IStock mockStock = Substitute.For<IStock>();
+            preparateurFormule.AjouterBoisson(new Boisson("FakeProduit", 10, 10, 10), mockStock);
+            mockStock.Received().ChangerStockProduit("FakeProduit", -1);
+        }
+
+        [Fact]
+        public void TestMockModificationStockAjouterDessert()
+        {
+            IStock mockStock = Substitute.For<IStock>();
+            preparateurFormule.AjouterDessert(new Nourriture("FakeProduit", 10, 10, 10), mockStock);
+            mockStock.Received().ChangerStockProduit("FakeProduit", -1);
+        }
+
+
+        [Fact]
+        public void TestMockModificationStockAjouterPlatPrincipal()
+        {
+            IStock mockStock = Substitute.For<IStock>();
+            preparateurFormule.AjouterPlatPrincipal(new Nourriture("FakeProduit", 10, 10, 10), mockStock);
+            mockStock.Received().ChangerStockProduit("FakeProduit", -1);
+        }
+
+        [Fact]
+        public void TestPreparationFormuleDessertSodaVegetarien()
+        {
+            FormuleRepas formuleRepas = preparateurFormuleVegetarienne.PreparationFormuleDessertSoda(stock);
+            Assert.Equal(2, formuleRepas.Formule.Count);
+            Assert.Contains("Coca", formuleRepas.ToString());
+            Assert.Contains("Gateau", formuleRepas.ToString());
+        }
+
+        [Fact]
+        public void TestPreparationFormuleBiereSalade()
+        {
+            FormuleRepas formuleRepas = preparateurFormuleVegetarienne.PreparationFormuleBiereSalade(stock);
+            Assert.Equal(2, formuleRepas.Formule.Count);
+            Assert.Contains("Biere", formuleRepas.ToString());
+            Assert.Contains("Salade", formuleRepas.ToString());
+        }
+
+        [Fact]
+        public void TestPreparationFormuleBiereSandwichDessertVegetarien()
+        {
+            FormuleRepas formuleRepas = preparateurFormuleVegetarienne.PreparationFormuleBiereSandwichDessert(stock);
+            Assert.Equal(3, formuleRepas.Formule.Count);
+            Assert.Contains("Biere", formuleRepas.ToString());
+            Assert.Contains("Sandwich vege", formuleRepas.ToString());
+            Assert.Contains("Gateau", formuleRepas.ToString());
+        }
+
+        [Fact]
+        public void TestMockModificationStockAjouterBoissonVegetarien()
+        {
+            IStock mockStock = Substitute.For<IStock>();
+            preparateurFormuleVegetarienne.AjouterBoisson(new Boisson("FakeProduit", 10, 10, 10), mockStock);
+            mockStock.Received().ChangerStockProduit("FakeProduit", -1);
+        }
+
+        [Fact]
+        public void TestMockModificationStockAjouterDessertVegetarien()
+        {
+            IStock mockStock = Substitute.For<IStock>();
+            preparateurFormuleVegetarienne.AjouterDessert(new Nourriture("FakeProduit", 10, 10, 10), mockStock);
+            mockStock.Received().ChangerStockProduit("FakeProduit", -1);
+        }
+
+
+        [Fact]
+        public void TestMockModificationStockAjouterPlatPrincipalVegetarien()
+        {
+            IStock mockStock = Substitute.For<IStock>();
+            preparateurFormuleVegetarienne.AjouterPlatPrincipal(new Nourriture("FakeProduit", 10, 10, 10), mockStock);
+            mockStock.Received().ChangerStockProduit("FakeProduit", -1);
+        }
+    }
+
+    internal class FakeStock : IStock
+    {
+        public void AjouterStock(Produit produit, int quantite)
+        {
+        }
+
+        public bool ChangerStockProduit(string nomProduit, int quantite)
+        {
+            return true;
+        }
+
+        public Produit TrouverProduit(string nomProduit)
+        {
+            return new Boisson("FakeProduit",10,10,10);
+        }
+
+        public int TrouverStockProduit(string nomProduit)
+        {
+            return 0;
+        }
     }
 }

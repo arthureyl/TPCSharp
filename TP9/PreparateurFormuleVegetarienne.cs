@@ -10,54 +10,43 @@
             FormuleRepasVegetarienne = new FormuleRepas();
         }
 
-        public void AjouterBoisson(Produit produit)
+        public void AjouterBoisson(Produit produit, IStock stock)
         {
+            stock.ChangerStockProduit(produit.Nom, -1);
             FormuleRepasVegetarienne.AjouterProduit(produit);
         }
 
-        public void AjouterDessert(Produit produit)
+        public void AjouterDessert(Produit produit, IStock stock)
         {
+            stock.ChangerStockProduit(produit.Nom, -1);
             FormuleRepasVegetarienne.AjouterProduit(produit);
         }
 
-        public void AjouterPlatPrincipal(Produit produit)
+        public void AjouterPlatPrincipal(Produit produit, IStock stock)
         {
+            stock.ChangerStockProduit(produit.Nom, -1);
             FormuleRepasVegetarienne.AjouterProduit(produit);
         }
 
-        public FormuleRepas PreparationFormuleDessertSoda(Stock stock)
+        public FormuleRepas PreparationFormuleDessertSoda(IStock stock)
         {
-            Produit soda = stock.TrouverProduit("Coca");
-            Produit dessert = stock.TrouverProduit("Gateau");
-            stock.ChangerStockProduit(soda.Nom, -1);
-            stock.ChangerStockProduit(dessert.Nom, -1);
-            AjouterBoisson(soda);
-            AjouterDessert(dessert);
+            AjouterBoisson(stock.TrouverProduit("Coca"),stock);
+            AjouterDessert(stock.TrouverProduit("Gateau"),stock);
             return FormuleRepasVegetarienne;
         }
 
-        public FormuleRepas PreparationFormuleBiereSalade(Stock stock)
+        public FormuleRepas PreparationFormuleBiereSalade(IStock stock)
         {
-            Produit biere = stock.TrouverProduit("Biere");
-            Produit salade = stock.TrouverProduit("Salade");
-            stock.ChangerStockProduit(biere.Nom, -1);
-            stock.ChangerStockProduit(salade.Nom, -1);
-            AjouterBoisson(biere);
-            AjouterPlatPrincipal(salade);
+            AjouterBoisson(stock.TrouverProduit("Biere"),stock);
+            AjouterPlatPrincipal(stock.TrouverProduit("Salade"),stock);
             return FormuleRepasVegetarienne;
         }
 
-        public FormuleRepas PreparationFormuleBiereSandwichDessert(Stock stock)
+        public FormuleRepas PreparationFormuleBiereSandwichDessert(IStock stock)
         {
-            Produit biere = stock.TrouverProduit("Biere");
-            Produit sandwich = stock.TrouverProduit("Sandwich vege");
-            Produit dessert = stock.TrouverProduit("Gateau");
-            stock.ChangerStockProduit(biere.Nom, -1);
-            stock.ChangerStockProduit(sandwich.Nom, -1);
-            stock.ChangerStockProduit(dessert.Nom, -1);
-            AjouterBoisson(biere);
-            AjouterPlatPrincipal(sandwich);
-            AjouterDessert(dessert);
+            AjouterBoisson(stock.TrouverProduit("Biere"),stock);
+            AjouterPlatPrincipal(stock.TrouverProduit("Sandwich vege"),stock);
+            AjouterDessert(stock.TrouverProduit("Gateau"),stock);
             return FormuleRepasVegetarienne;
         }
 
