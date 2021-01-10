@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using TP9;
 
 namespace TP9Test.Builders
@@ -14,7 +12,7 @@ namespace TP9Test.Builders
 
         public BdeTestBuilder()
         {
-            _bdeTest  = new Bde();
+            _bdeTest = new Bde();
         }
 
         public Bde BdeBuilder()

@@ -1,8 +1,4 @@
-﻿using NSubstitute;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using TP9;
+﻿using TP9;
 using TP9Test.Builders;
 using Xunit;
 
@@ -32,13 +28,13 @@ namespace TP9Test
         [Fact]
         public void TestTrouverStockProduit()
         {
-            Assert.Equal(10,stockProduit.TrouverStockProduit("Chips"));
+            Assert.Equal(10, stockProduit.TrouverStockProduit("Chips"));
         }
 
         [Fact]
         public void TestAjouterProduitStock()
         {
-            stockProduit.AjouterStock(new ProduitTestBuilder().JambonBuilder(),150);
+            stockProduit.AjouterStock(new ProduitTestBuilder().JambonBuilder(), 150);
             Assert.Equal(150, stockProduit.TrouverStockProduit("Jambon"));
         }
 

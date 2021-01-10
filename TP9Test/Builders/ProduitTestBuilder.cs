@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using TP9;
+﻿using TP9;
 
 namespace TP9Test.Builders
 {
@@ -28,7 +25,7 @@ namespace TP9Test.Builders
 
         public Produit BiereBuilder()
         {
-            return new BoissonAlcoolisee("Biere", 0.5m, 2, 3.5m,5);
+            return new BoissonAlcoolisee("Biere", 0.5m, 2, 3.5m, 5);
         }
 
         public Produit JambonBuilder()

@@ -10,10 +10,10 @@
             FormuleRepasNormal = new FormuleRepas();
         }
 
-        public void AjouterBoisson(Produit produit,IStock stock)
-        {   
-                stock.ChangerStockProduit(produit.Nom, -1);
-                FormuleRepasNormal.AjouterProduit(produit);
+        public void AjouterBoisson(Produit produit, IStock stock)
+        {
+            stock.ChangerStockProduit(produit.Nom, -1);
+            FormuleRepasNormal.AjouterProduit(produit);
         }
 
         public void AjouterDessert(Produit produit, IStock stock)
@@ -37,14 +37,14 @@
 
         public FormuleRepas PreparationFormuleBiereSandwich(IStock stock)
         {
-            AjouterBoisson(stock.TrouverProduit("Biere"),stock);
-            AjouterPlatPrincipal(stock.TrouverProduit("Sandwich"),stock);
+            AjouterBoisson(stock.TrouverProduit("Biere"), stock);
+            AjouterPlatPrincipal(stock.TrouverProduit("Sandwich"), stock);
             return FormuleRepasNormal;
         }
 
         public FormuleRepas PreparationFormuleBiereSandwichDessert(IStock stock)
         {
-            AjouterBoisson(stock.TrouverProduit("Biere"),stock);
+            AjouterBoisson(stock.TrouverProduit("Biere"), stock);
             AjouterPlatPrincipal(stock.TrouverProduit("Sandwich"), stock);
             AjouterDessert(stock.TrouverProduit("Tiramisu"), stock);
             return FormuleRepasNormal;

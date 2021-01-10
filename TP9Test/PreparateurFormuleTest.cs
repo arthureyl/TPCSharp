@@ -1,7 +1,4 @@
 ﻿using NSubstitute;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using TP9;
 using TP9Test.Builders;
 using Xunit;
@@ -149,7 +146,7 @@ namespace TP9Test
 
         public Produit TrouverProduit(string nomProduit)
         {
-            return new Boisson("FakeProduit",10,10,10);
+            return new Boisson("FakeProduit", 10, 10, 10);
         }
 
         public int TrouverStockProduit(string nomProduit)

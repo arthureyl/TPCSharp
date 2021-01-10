@@ -7,7 +7,7 @@
     //membres, et un prix de vente pour les non-membres. Ces attributs ne
     //peuvent plus être modifiés après la création d’un objet.
 
-    public abstract class Produit : IPackaging
+    public abstract class Produit : IPackaging, IVendable
     {
         private string _nom;
         private decimal _prixAchat;
@@ -28,5 +28,15 @@
         public decimal PrixVenteMembre { get => _prixVenteMembre; }
         public decimal PrixVenteNonMembre { get => _prixVenteNonMembre; }
         public string Emballage { get => _emballage; set => _emballage = value; }
+
+        public decimal CalculerPrixMembre()
+        {
+            return PrixVenteMembre;
+        }
+
+        public decimal CalculerPrixNonMembre()
+        {
+            return PrixVenteNonMembre;
+        }
     }
 }

@@ -30,23 +30,23 @@
 
         public FormuleRepas PreparationFormuleDessertSoda(IStock stock)
         {
-            AjouterBoisson(stock.TrouverProduit("Coca"),stock);
-            AjouterDessert(stock.TrouverProduit("Gateau"),stock);
+            AjouterBoisson(stock.TrouverProduit("Coca"), stock);
+            AjouterDessert(stock.TrouverProduit("Gateau"), stock);
             return FormuleRepasVegetarienne;
         }
 
         public FormuleRepas PreparationFormuleBiereSalade(IStock stock)
         {
-            AjouterBoisson(stock.TrouverProduit("Biere"),stock);
-            AjouterPlatPrincipal(stock.TrouverProduit("Salade"),stock);
+            AjouterBoisson(stock.TrouverProduit("Biere"), stock);
+            AjouterPlatPrincipal(stock.TrouverProduit("Salade"), stock);
             return FormuleRepasVegetarienne;
         }
 
         public FormuleRepas PreparationFormuleBiereSandwichDessert(IStock stock)
         {
-            AjouterBoisson(stock.TrouverProduit("Biere"),stock);
-            AjouterPlatPrincipal(stock.TrouverProduit("Sandwich vege"),stock);
-            AjouterDessert(stock.TrouverProduit("Gateau"),stock);
+            AjouterBoisson(stock.TrouverProduit("Biere"), stock);
+            AjouterPlatPrincipal(stock.TrouverProduit("Sandwich vege"), stock);
+            AjouterDessert(stock.TrouverProduit("Gateau"), stock);
             return FormuleRepasVegetarienne;
         }
 

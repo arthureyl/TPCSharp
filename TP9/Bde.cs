@@ -11,15 +11,22 @@ namespace TP9
         //bénéficieront d’un tarif préférentiel.
         private Stock _stockBde;
         private Dictionary<Client, decimal> _clientsBde;
+        private List<Transaction> _transactions;
 
         //Singleton 
         private static Bde _instance;
         private static readonly object _lock = new object();
 
+        private ConcreteVisitorClientAchat _concreteVisitorClientAchat;
+        private ConcreteVisitorProduit _concreteVisitorProduit;
+
         public Bde()
         {
             _stockBde = new Stock();
             _clientsBde = new Dictionary<Client, decimal>();
+            _transactions = new List<Transaction>();
+            _concreteVisitorClientAchat = new ConcreteVisitorClientAchat();
+            _concreteVisitorProduit = new ConcreteVisitorProduit();
         }
 
         public static Bde GetInstance()
@@ -39,6 +46,7 @@ namespace TP9
 
         public Stock StockBde { get => _stockBde; set => _stockBde = value; }
         public Dictionary<Client, decimal> ClientsBde { get => _clientsBde; set => _clientsBde = value; }
+        public List<Transaction> TransactionBde { get => _transactions; set => _transactions = value; }
 
 
         //V.2 Créez une méthode permettant d’ajouter des clients.Chaque client
@@ -107,5 +115,23 @@ namespace TP9
                 }
             }
         }
+        public void Vendre(Client client, Produit produit)
+        {
+            this.StockBde.AjouterStock(produit, -1);
+            Transaction transaction = null;
+            if (client is AutreClient)
+            {
+                transaction = new Transaction(client, produit, produit.PrixVenteNonMembre);
+                TransactionBde.Add(transaction);
+            }
+            else
+            {
+                transaction = new Transaction(client, produit, produit.PrixVenteMembre);
+                TransactionBde.Add(transaction);
+            }
+            transaction.Accepter(_concreteVisitorClientAchat);
+            transaction.Accepter(_concreteVisitorProduit);
+        }
+
     }
 }

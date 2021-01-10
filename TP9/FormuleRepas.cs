@@ -2,7 +2,7 @@
 
 namespace TP9
 {
-    public class FormuleRepas
+    public class FormuleRepas : IVendable
     {
         private List<Produit> _formule;
 
@@ -18,7 +18,7 @@ namespace TP9
             Formule.Add(produit);
         }
 
-        public decimal PrixFormuleNomMembre()
+        public decimal CalculerPrixNonMembre()
         {
             decimal prixFormuleNonMembre = 0;
             foreach (var produit in Formule)
@@ -29,7 +29,7 @@ namespace TP9
             return prixFormuleNonMembre;
         }
 
-        public decimal PrixFormuleMembre()
+        public decimal CalculerPrixMembre()
         {
             decimal prixFormuleMembre = 0;
             foreach (var produit in Formule)

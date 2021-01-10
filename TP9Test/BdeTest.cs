@@ -1,7 +1,5 @@
 ﻿using NSubstitute;
-using System;
 using System.Collections.Generic;
-using System.Text;
 using TP9;
 using TP9Test.Builders;
 using Xunit;
@@ -34,7 +32,7 @@ namespace TP9Test
         {
             List<Client> clientSoldeNegatif = bdeBuilderTest.TrouverUtilisateurSoldeNegatif(10);
 
-            Assert.Equal(3,clientSoldeNegatif.Count);
+            Assert.Equal(3, clientSoldeNegatif.Count);
             Assert.IsType<Etudiant>(clientSoldeNegatif[0]);
             Assert.IsType<AutreClient>(clientSoldeNegatif[1]);
             Assert.IsType<AutreClient>(clientSoldeNegatif[2]);
@@ -46,7 +44,7 @@ namespace TP9Test
             Client clientEtudiant = new Etudiant("testnom", "testprenom", 2000);
             bdeBuilderTest.AjouterClient(clientEtudiant, 10);
 
-            Assert.Equal(10,bdeBuilderTest.ClientsBde[clientEtudiant]);
+            Assert.Equal(10, bdeBuilderTest.ClientsBde[clientEtudiant]);
             Assert.Equal(5, bdeBuilderTest.ClientsBde.Count);
         }
 
@@ -79,7 +77,7 @@ namespace TP9Test
             IObserver mockObserver = Substitute.For<IObserver>();
             bdeBuilderTest.StockBde.Attach(mockObserver);
             bdeBuilderTest.StockBde.ChangerStockProduit("Coca", -1);
-            mockObserver.Received().Update(bdeBuilderTest.StockBde.TrouverProduit("Coca"),0, bdeBuilderTest.StockBde);
+            mockObserver.Received().Update(bdeBuilderTest.StockBde.TrouverProduit("Coca"), 0, bdeBuilderTest.StockBde);
         }
 
         [Fact]
