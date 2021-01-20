@@ -98,5 +98,36 @@ namespace TP9Test
             preparateurFormule.PreparationFormuleDessertSoda(bdeBuilderTest.StockBde);
             mockObserver.DidNotReceive().Update(bdeBuilderTest.StockBde.TrouverProduit("Coca"), 0, bdeBuilderTest.StockBde);
         }
+
+        [Fact]
+        public void TestAjouterClientMomento()
+        {
+
+            bdeBuilderTest.AjouterClient(new Etudiant("testnom", "testprenom", 2000), 10);
+            Assert.NotEqual(bdeBuilderTest.ClientsBde, bdeBuilderTest.MementosClients.Peek().Clients);
+            Assert.Equal(bdeBuilderTest.ClientsBde.Count-1, bdeBuilderTest.MementosClients.Peek().Clients.Count);
+            Bde newBdeBuilderTest = new BdeTestBuilder().BdeBuilder();
+            Assert.NotEqual(newBdeBuilderTest.ClientsBde, bdeBuilderTest.MementosClients.Peek().Clients);
+
+        }
+
+        [Fact]
+        public void TestVendreMomentoStock()
+        {
+            Client testEtudiant = new Etudiant("testnom", "testprenom", 2000);
+            bdeBuilderTest.AjouterClient(testEtudiant, 1000);
+            bdeBuilderTest.Vendre(testEtudiant, bdeBuilderTest.StockBde.TrouverProduit("Chips"));
+            Assert.Equal(10, bdeBuilderTest.MementosStock.Peek().GetStock.TrouverStockProduit("Chips"));
+        }
+
+        [Fact]
+        public void TestVendreMomentoTransaction()
+        {
+            Client testEtudiant = new Etudiant("testnom", "testprenom", 2000);
+            List<Transaction> transactionsTestSave = new List<Transaction>(bdeBuilderTest.TransactionBde);
+            bdeBuilderTest.AjouterClient(testEtudiant, 1000);
+            bdeBuilderTest.Vendre(testEtudiant, bdeBuilderTest.StockBde.TrouverProduit("Chips"));
+            Assert.Equal(transactionsTestSave, bdeBuilderTest.MementosTransactions.Peek().Transactions);
+        }
     }
 }

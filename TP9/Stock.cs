@@ -14,6 +14,11 @@ namespace TP9
             _stockProduit = new Dictionary<Produit, int>();
         }
 
+        public Stock(Dictionary<Produit, int> stock)
+        {
+            _stockProduit = new Dictionary<Produit, int>(stock);
+        }
+
         //III.1Développer une fonction qui permet de récupérer un produit en
         //fonction de son nom. (Renvoie null s’il n’existe pas)
         public Produit TrouverProduit(string nomProduit)

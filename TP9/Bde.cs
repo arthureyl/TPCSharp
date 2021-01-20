@@ -20,6 +20,10 @@ namespace TP9
         private ConcreteVisitorClientAchat _concreteVisitorClientAchat;
         private ConcreteVisitorProduit _concreteVisitorProduit;
 
+        private Stack<BdeMomentoClients> _mementosClients;
+        private Stack<BdeMomentoStock> _mementosStock;
+        private Stack<BdeMomentoTransactions> _mementosTransactions;
+
         public Bde()
         {
             _stockBde = new Stock();
@@ -27,6 +31,9 @@ namespace TP9
             _transactions = new List<Transaction>();
             _concreteVisitorClientAchat = new ConcreteVisitorClientAchat();
             _concreteVisitorProduit = new ConcreteVisitorProduit();
+            _mementosClients = new Stack<BdeMomentoClients>();
+            _mementosStock = new Stack<BdeMomentoStock>();
+            _mementosTransactions = new Stack<BdeMomentoTransactions>();
         }
 
         public static Bde GetInstance()
@@ -48,12 +55,16 @@ namespace TP9
         public Dictionary<Client, decimal> ClientsBde { get => _clientsBde; set => _clientsBde = value; }
         public List<Transaction> TransactionBde { get => _transactions; set => _transactions = value; }
 
+        public Stack<BdeMomentoClients> MementosClients { get => _mementosClients; set => _mementosClients = value; }
+        public Stack<BdeMomentoStock> MementosStock { get => _mementosStock; set => _mementosStock = value; }
+        public Stack<BdeMomentoTransactions> MementosTransactions { get => _mementosTransactions; set => _mementosTransactions = value; }
 
         //V.2 Créez une méthode permettant d’ajouter des clients.Chaque client
         //aura un solde, de la même manière que le Stock a une quantité de
         //produits.
         public void AjouterClient(Client client, decimal solde)
         {
+            BackupBdeMomentoClients();
             ClientsBde.Add(client, solde);
         }
 
@@ -117,8 +128,10 @@ namespace TP9
         }
         public void Vendre(Client client, Produit produit)
         {
+            BackupBdeMomentoStock();
             this.StockBde.AjouterStock(produit, -1);
             Transaction transaction = null;
+            BackupBdeMomentoTransactions();
             if (client is AutreClient)
             {
                 transaction = new Transaction(client, produit, produit.PrixVenteNonMembre);
@@ -131,6 +144,38 @@ namespace TP9
             }
             transaction.Accepter(_concreteVisitorClientAchat);
             transaction.Accepter(_concreteVisitorProduit);
+        }
+
+        public BdeMomentoClients SauvegarderClients()
+        {
+            return new BdeMomentoClients(ClientsBde);
+        }
+
+        public BdeMomentoStock SauvegarderStock()
+        {
+            return new BdeMomentoStock(StockBde);
+        }
+
+        public BdeMomentoTransactions SauvegarderTransactions()
+        {
+            return new BdeMomentoTransactions(TransactionBde);
+        }
+
+
+        public void BackupBdeMomentoClients()
+        {
+            Console.WriteLine("\nCaretaker: Saving Originator's state...");
+            this._mementosClients.Push(SauvegarderClients());
+        }
+        public void BackupBdeMomentoStock()
+        {
+            Console.WriteLine("\nCaretaker: Saving Originator's state...");
+            this._mementosStock.Push(SauvegarderStock());
+        }
+        public void BackupBdeMomentoTransactions()
+        {
+            Console.WriteLine("\nCaretaker: Saving Originator's state...");
+            this._mementosTransactions.Push(SauvegarderTransactions());
         }
 
     }
